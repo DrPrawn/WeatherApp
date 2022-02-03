@@ -1,0 +1,70 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="pics\**" />
+    <EmbeddedResource Remove="pics\**" />
+    <None Remove="pics\**" />
+    <Page Remove="pics\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Images\Cloud.png" />
+    <None Remove="Images\Icons\cloudy.png" />
+    <None Remove="Images\Icons\frosty.png" />
+    <None Remove="Images\Icons\partial-cloudy-rainy.png" />
+    <None Remove="Images\Icons\partial-cloudy.png" />
+    <None Remove="Images\Icons\rainy.png" />
+    <None Remove="Images\Icons\snow.png" />
+    <None Remove="Images\Icons\sunny.png" />
+    <None Remove="Images\Icons\sunny01.jpeg" />
+    <None Remove="Images\Rain.png" />
+    <None Remove="Images\Snow.png" />
+    <None Remove="Images\Sun.png" />
+    <None Remove="TitleWeather.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\Cloud.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Icons\cloudy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Icons\frosty.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Icons\rainy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Icons\snow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Icons\sunny.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Rain.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Snow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Sun.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TitleWeather.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>
