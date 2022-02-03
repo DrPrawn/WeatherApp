@@ -65,19 +65,20 @@
                  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
                  Height="30" Width="720"
                  Background="White" Foreground="Black" 
-                 TextAlignment="Center" FontSize="22" FontWeight="Bold" FontFamily="Bahnschrift"/>
+                 TextAlignment="Center" FontSize="22" FontWeight="Bold" FontFamily="Bahnschrift">
+        </TextBox>
 
-        <Button Style="{DynamicResource ButtonStyle1}" x:Name="buttonRefresh" Click="ButtonRefresh_Click" Content="Click" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Top"
-                Height="30" Width="70" Margin="3,0,0,0"/>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="buttonRefresh" Click="ButtonRefresh_Click" Content="Aktualisieren" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Top"
+                Height="30" Width="80" Margin="3,0,0,0">
+        </Button>
 
-        <Label x:Name="labelDateTime" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="490"
-               FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+        <Label x:Name="labelDateTime" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="229"
+               FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                Foreground="White"
                Content="Sonntag, 30.01.2022   15:30 Uhr MEZ">
             <Label.Effect>
-                <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
+                <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="Black"/>
             </Label.Effect>
-            
         </Label>
 
         <Label x:Name="labelTemperature" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="300"  Width="500"
@@ -99,70 +100,162 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Label x:Name="labelFeelsLike" Grid.Row="0"
-                   FontWeight="Light" FontSize="20" FontFamily="Bahnschrift" Foreground="White"
-                   Content="Feels like: 55°C"
-                   VerticalContentAlignment="Center">
-                <Label.Effect>
-                    <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
-                </Label.Effect>
-            </Label>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <Label x:Name="labelTempMin" Grid.Row="1"
-                   FontWeight="Light" FontSize="20" FontFamily="Bahnschrift" Foreground="White"
-                   Content="Min. Temp.: 38°C"
-                   VerticalContentAlignment="Center">
-                <Label.Effect>
-                    <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
-                </Label.Effect>
-            </Label>
+                <Label Grid.Column="0" 
+                  FontWeight="Light" FontSize="20" FontFamily="Bahnschrift" Foreground="White"
+                   Content="Gefühlt: " 
+                   HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
+                    <Label.Effect>
+                        <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
+                    </Label.Effect>
+                </Label>
 
-            <Label x:Name="labelTempMax" Grid.Row="2"
+                <Label x:Name="labelFeelsLike" Grid.Row="0" Grid.Column="1"
                    FontWeight="Light" FontSize="20" FontFamily="Bahnschrift" Foreground="White"
-                   Content="Max. Temp.: 42°C"
-                   VerticalContentAlignment="Center">
-                <Label.Effect>
-                    <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
-                </Label.Effect>
-            </Label>
+                   Content="55°C"
+                   HorizontalContentAlignment="Right" VerticalContentAlignment="Center">
+                    <Label.Effect>
+                        <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
+                    </Label.Effect>
+                </Label>
+            </Grid>
 
-            <Label x:Name="labelPressure" Grid.Row="3"
-                   FontWeight="Light" FontSize="20" FontFamily="Bahnschrift" Foreground="White"
-                   Content="Pressure: 1020hPa"
-                   VerticalContentAlignment="Center">
-                <Label.Effect>
-                    <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
-                </Label.Effect>
-            </Label>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <Label x:Name="labelHumidity" Grid.Row="4"
+                <Label Grid.Column="0" 
+                  FontWeight="Light" FontSize="20" FontFamily="Bahnschrift" Foreground="White"
+                   Content="Min. Temp.: " 
+                   HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
+                    <Label.Effect>
+                        <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
+                    </Label.Effect>
+                </Label>
+
+                <Label x:Name="labelTempMin" Grid.Column="1"
                    FontWeight="Light" FontSize="20" FontFamily="Bahnschrift" Foreground="White"
-                   Content="Humidity: 1%"
-                   VerticalContentAlignment="Center">
-                <Label.Effect>
-                    <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
-                </Label.Effect>
-            </Label>
-            
-            <Label x:Name="labelWindSpeed" Grid.Row="5"
+                   Content="38°C"
+                   VerticalContentAlignment="Center" HorizontalContentAlignment="Right">
+                    <Label.Effect>
+                        <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
+                    </Label.Effect>
+                </Label>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" 
+                  FontWeight="Light" FontSize="20" FontFamily="Bahnschrift" Foreground="White"
+                   Content="Max. Temp.: " 
+                   HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
+                    <Label.Effect>
+                        <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
+                    </Label.Effect>
+                </Label>
+
+                <Label x:Name="labelTempMax" Grid.Column="1"
                    FontWeight="Light" FontSize="20" FontFamily="Bahnschrift" Foreground="White"
-                   Content="Windspeed: 150 km/h"
-                   VerticalContentAlignment="Center">
-                <Label.Effect>
-                     <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
-                </Label.Effect>
-            </Label>
-            
+                   Content="42°C"
+                   VerticalContentAlignment="Center" HorizontalContentAlignment="Right">
+                    <Label.Effect>
+                        <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
+                    </Label.Effect>
+                </Label>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" 
+                  FontWeight="Light" FontSize="20" FontFamily="Bahnschrift" Foreground="White"
+                   Content="Luftdruck: " 
+                   HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
+                    <Label.Effect>
+                        <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
+                    </Label.Effect>
+                </Label>
+
+                <Label x:Name="labelPressure" Grid.Column="1"
+                   FontWeight="Light" FontSize="20" FontFamily="Bahnschrift" Foreground="White"
+                   Content="1020hPa"
+                   VerticalContentAlignment="Center" HorizontalContentAlignment="Right">
+                    <Label.Effect>
+                        <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
+                    </Label.Effect>
+                </Label>
+            </Grid>
+
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" 
+                  FontWeight="Light" FontSize="20" FontFamily="Bahnschrift" Foreground="White"
+                   Content="Luftfeuchtigkeit: " 
+                   HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
+                    <Label.Effect>
+                        <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
+                    </Label.Effect>
+                </Label>
+
+                <Label x:Name="labelHumidity" Grid.Column="1"
+                   FontWeight="Light" FontSize="20" FontFamily="Bahnschrift" Foreground="White"
+                   Content="1%"
+                   VerticalContentAlignment="Center" HorizontalContentAlignment="Right">
+                    <Label.Effect>
+                        <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
+                    </Label.Effect>
+                </Label>
+            </Grid>
+
+            <Grid Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" 
+                  FontWeight="Light" FontSize="20" FontFamily="Bahnschrift" Foreground="White"
+                   Content="Windgeschw.:" 
+                   HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
+                    <Label.Effect>
+                        <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
+                    </Label.Effect>
+                </Label>
+
+                <Label x:Name="labelWindSpeed" Grid.Column="1"
+                   FontWeight="Light" FontSize="20" FontFamily="Bahnschrift" Foreground="White"
+                   Content="150 km/h"
+                   VerticalContentAlignment="Center" HorizontalContentAlignment="Right">
+                    <Label.Effect>
+                        <DropShadowEffect ShadowDepth="3" BlurRadius="1" Color="Black"/>
+                    </Label.Effect>
+                </Label>
+            </Grid>
         </Grid>
-
 
         <Label x:Name="labelWeatherIcon" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Height="230" Width="230">
             <Label.Background>
                 <ImageBrush x:Name="weatherIcon" ImageSource="/WeatherApp;component/Images/Icons/sunny.png"/>
             </Label.Background>
         </Label>
-        
-        
 
         <Label x:Name="labelInfotext" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Top" Height="60" Width="230"
                FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
@@ -178,7 +271,7 @@
                   TextAlignment="Center" Width="Auto"
                   Background="Transparent"
                   Foreground="WhiteSmoke"
-                  BorderBrush="Transparent"/>
-
+                  BorderBrush="Transparent">
+        </TextBox>
     </Grid>
 </Window>

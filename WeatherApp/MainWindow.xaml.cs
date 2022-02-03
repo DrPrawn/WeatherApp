@@ -18,7 +18,7 @@ namespace WeatherApp
         {
             InitializeComponent();
 
-            string city = "Frankfurt am Main";
+            string city = "Glauburg";
 
             WeatherMapResponse result = GetWeatherData(city);
 
@@ -49,13 +49,13 @@ namespace WeatherApp
             weatherIcon.ImageSource = new BitmapImage(new Uri("Images/Icons/" + finalIcon, UriKind.Relative));
 
             labelTemperature.Content = (result.main.temp).ToString("F1") + "°C";
-            labelFeelsLike.Content = "Feels like: " + (result.main.feels_like).ToString("F1") + "°C";
-            labelTempMin.Content = "Min. Temp.: " + (result.main.temp_min).ToString("F1") + "°C";
-            labelTempMax.Content = "Max. Temp.: " + (result.main.temp_max).ToString("F1") + "°C";
-            labelPressure.Content = "Pressure:" + (result.main.pressure).ToString("F1") + "°C";
-            labelHumidity.Content = "Humidity: " + (result.main.humidity).ToString("F1") + "°C";
-            labelWindSpeed.Content = "Windspeed: " + (result.wind.speed).ToString() + "km/h";
-            labelInfotext.Content = result.weather[0].main;
+            labelFeelsLike.Content = (result.main.feels_like).ToString("F1") + "°C";
+            labelTempMin.Content = (result.main.temp_min).ToString("F1") + "°C";
+            labelTempMax.Content = (result.main.temp_max).ToString("F1") + "°C";
+            labelPressure.Content = (result.main.pressure).ToString("F1") + "°C";
+            labelHumidity.Content = (result.main.humidity).ToString("F1") + "°C";
+            labelWindSpeed.Content = (result.wind.speed).ToString() + "km/h";
+            labelInfotext.Content = result.weather[0].description;
 
         }
 
