@@ -12,14 +12,17 @@ namespace WeatherApp
     public partial class MainWindow : Window
     {
         private readonly string apiKey = "3cf72ba952eda0c663182cc9e046ea10";
-        private readonly string requestURL = "https://api.openweathermap.org/data/2.5/weather";
+        private readonly string weatherRequestURL = "https://api.openweathermap.org/data/2.5/weather";
+        //private readonly string sevenDayRequestURL = "https://api.openweathermap.org/data/2.5/onecall&lon={lon}&exclude={part}&appid={API key}";
 
         public MainWindow()
         {
             InitializeComponent();
+            UpdateUI("Kapstadt");
+        }
 
-            string city = "Glauburg";
-
+        public void UpdateUI(string city)
+        {
             WeatherMapResponse result = GetWeatherData(city);
 
             textInputCity.Text = city.ToString();
@@ -52,18 +55,18 @@ namespace WeatherApp
             labelFeelsLike.Content = (result.main.feels_like).ToString("F1") + "°C";
             labelTempMin.Content = (result.main.temp_min).ToString("F1") + "°C";
             labelTempMax.Content = (result.main.temp_max).ToString("F1") + "°C";
-            labelPressure.Content = (result.main.pressure).ToString("F1") + "°C";
-            labelHumidity.Content = (result.main.humidity).ToString("F1") + "°C";
+            labelPressure.Content = (result.main.pressure).ToString("F1") + "hPa";
+            labelHumidity.Content = (result.main.humidity).ToString("F1") + "%";
             labelWindSpeed.Content = (result.wind.speed).ToString() + "km/h";
             labelInfotext.Content = result.weather[0].description;
-
         }
-
+        
         public WeatherMapResponse GetWeatherData(string city)
         {
             HttpClient httpClient = new();
-            var finalURI = requestURL + "?q=" + city + "&appid=" + apiKey + "&units=metric";
-            HttpResponseMessage httpResponse = httpClient.GetAsync(finalURI).Result;
+            var weatherfinalURI = weatherRequestURL + "?q=" + city + "&appid=" + apiKey + "&units=metric";
+            //var sevenDayFinalURL = sevenDayRequestURL + ? lat ={ lat}
+            HttpResponseMessage httpResponse = httpClient.GetAsync(weatherfinalURI).Result;
             string response = httpResponse.Content.ReadAsStringAsync().Result;
             WeatherMapResponse weatherMapResponse = JsonConvert.DeserializeObject<WeatherMapResponse>(response);
 
@@ -72,7 +75,8 @@ namespace WeatherApp
 
         private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
         {
-
+            string query = textInputCity.Text;
+            UpdateUI(query);
         }
     }
 }
