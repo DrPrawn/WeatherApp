@@ -6,6 +6,8 @@ namespace WeatherApp
     {
         public Main main;
         public Wind wind;
+        public Coord coord;
+        public Sys sys;
         public List<Weather> weather;
     }
 }

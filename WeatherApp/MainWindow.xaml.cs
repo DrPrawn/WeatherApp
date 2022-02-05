@@ -13,15 +13,14 @@ namespace WeatherApp
     {
         private readonly string apiKey = "3cf72ba952eda0c663182cc9e046ea10";
         private readonly string weatherRequestURL = "https://api.openweathermap.org/data/2.5/weather";
-        //private readonly string sevenDayRequestURL = "https://api.openweathermap.org/data/2.5/onecall&lon={lon}&exclude={part}&appid={API key}";
 
         public MainWindow()
         {
             InitializeComponent();
-            UpdateUI("Kapstadt");
+            UpdateData("Glauburg");
         }
 
-        public void UpdateUI(string city)
+        public void UpdateData(string city)
         {
             WeatherMapResponse result = GetWeatherData(city);
 
@@ -47,26 +46,25 @@ namespace WeatherApp
                 finalImage = "snow.png";
                 finalIcon = "snow.png";
             }
-
+            
             backgroundImage.ImageSource = new BitmapImage(new Uri("Images/" + finalImage, UriKind.Relative));
             weatherIcon.ImageSource = new BitmapImage(new Uri("Images/Icons/" + finalIcon, UriKind.Relative));
 
-            labelTemperature.Content = (result.main.temp).ToString("F1") + "°C";
-            labelFeelsLike.Content = (result.main.feels_like).ToString("F1") + "°C";
-            labelTempMin.Content = (result.main.temp_min).ToString("F1") + "°C";
-            labelTempMax.Content = (result.main.temp_max).ToString("F1") + "°C";
-            labelPressure.Content = (result.main.pressure).ToString("F1") + "hPa";
-            labelHumidity.Content = (result.main.humidity).ToString("F1") + "%";
-            labelWindSpeed.Content = (result.wind.speed).ToString() + "km/h";
+            labelTemperature.Content = result.main.temp.ToString("F1") + "°C";
+            labelFeelsLike.Content = result.main.feels_like.ToString("F1") + "°C";
+            labelTempMin.Content = result.main.temp_min.ToString("F1") + "°C";
+            labelTempMax.Content = result.main.temp_max.ToString("F1") + "°C";
+            labelPressure.Content = result.main.pressure.ToString("F1") + "hPa";
+            labelHumidity.Content = result.main.humidity.ToString("F1") + "%";
+            labelWindSpeed.Content = result.wind.speed.ToString() + "km/h";
             labelInfotext.Content = result.weather[0].description;
         }
         
         public WeatherMapResponse GetWeatherData(string city)
         {
             HttpClient httpClient = new();
-            var weatherfinalURI = weatherRequestURL + "?q=" + city + "&appid=" + apiKey + "&units=metric";
-            //var sevenDayFinalURL = sevenDayRequestURL + ? lat ={ lat}
-            HttpResponseMessage httpResponse = httpClient.GetAsync(weatherfinalURI).Result;
+            var weatherFinalURI = weatherRequestURL + "?q=" + city + "&appid=" + apiKey + "&units=metric&lang=de";
+            HttpResponseMessage httpResponse = httpClient.GetAsync(weatherFinalURI).Result;
             string response = httpResponse.Content.ReadAsStringAsync().Result;
             WeatherMapResponse weatherMapResponse = JsonConvert.DeserializeObject<WeatherMapResponse>(response);
 
@@ -76,7 +74,7 @@ namespace WeatherApp
         private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
         {
             string query = textInputCity.Text;
-            UpdateUI(query);
+            UpdateData(query);
         }
     }
 }
