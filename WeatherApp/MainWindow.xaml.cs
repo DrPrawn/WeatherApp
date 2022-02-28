@@ -17,7 +17,7 @@ namespace WeatherApp
         public MainWindow()
         {
             InitializeComponent();
-            UpdateData("Glauburg");
+            UpdateData("Berlin");
         }
 
         public void UpdateData(string city)
